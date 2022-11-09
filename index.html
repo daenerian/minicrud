@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang=es dir=ltr>
+
+<head>
+	<meta charset=utf-8 />
+	<meta name=viewport content='width=device-width, initial-scale=1' />
+	<meta name=author content="juandanielcarvajalmontes.guadalupe@alumnado.fundacionloyola.net" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="css/estilo.css" />
+	<title>MiniCRUD</title>
+</head>
+<body>
+	<nav>
+		<ul>
+			<li>CRUD</li>
+		</ul>
+	</nav>
+	<div id="divCRUD">
+		<input type="text" name="buscar-nombre" />
+		<button>Buscar</button>
+		<span class="material-icons agregar">add</span>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Descripción</th>
+					<th>Fecha de aparición</th>
+					<th>Tipo</th>
+					<th>Más información</th>
+					<th>Operaciones</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<span class="material-icons agregar">add</span>
+	</div>
+	<div id="divFormulario">
+		<div id="formulario">
+			<div>
+				<label for="nombre">Nombre</label>
+				<input type="text" name="nombre" />
+			</div>
+			<div>
+				<label for="descripcion">Descripción</label>
+				<textarea name="descripcion"></textarea>
+			</div>
+			<div>
+				<label for="fecha-aparicion">Fecha de aparición</label>
+				<input type="text" name="fecha-aparicion" />
+			</div>
+			<select>
+				<option selected="true" disabled="disabled" value="0">Selecciona un tipo</option>
+			</select>
+			<div>
+				<label for="url">URL con más información</label>
+				<input type="text" name="url" />
+			</div>
+			<button>Cancelar</button>
+			<button>Aceptar</button>
+			<button>Modificar</button>
+		</div>
+	</div>
+	<div id="divDatos">
+		<div>
+			<h2>Nombre:</h2><p class="datos"></p>
+		</div>
+		<div>
+			<h2>Descripción:</h2><p class="datos"></p>
+		</div>
+		<div>
+			<h2>Fecha de aparición:</h2><p class="datos"></p>
+		</div>
+		<div>
+			<h2>Tipo:</h2><p class="datos"></p>
+		</div>
+		<div>
+			<h2>Más información:</h2><p class="datos"></p>
+		</div>
+	</div>
+	<script type=module src="js/app.js"></script>
+</body>
+
+</html>

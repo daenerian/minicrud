@@ -1,0 +1,12 @@
+body > div{
+	display: none;
+}
+
+nav li{
+	cursor: pointer;
+}
+
+#divInicio img{
+	width: 200px;
+	height: auto;
+}
