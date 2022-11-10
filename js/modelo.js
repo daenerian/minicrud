@@ -53,15 +53,24 @@ export class Modelo{
 	
 	leer(){
 		const objectStore = this.db.transaction('personajes', 'readonly').objectStore('personajes');
-		const peticion = objectStore.getAll()
+		const peticion = objectStore.openCursor();
+		this.lista = [];
 		
 		peticion.onerror = (evento) => {
 			console.log('No se han cargado los datos');
 		}
 
 		peticion.onsuccess = (evento) => {
-			this.lista = peticion.result;
-			this.avisar();
+			const cursor = peticion.result;
+			if(cursor){
+				cursor.value.id = cursor.key;
+				this.lista.push(cursor.value);
+				cursor.continue();
+				
+			}
+			else{
+				this.avisar();
+			}
 		}
 	}
 	
@@ -97,10 +106,10 @@ export class Modelo{
 		
 		peticion.onsuccess = (evento) => {
 			this.lista = evento.target.result;
-			try{
+			if(this.lista != undefined){
 				this.avisar();
 			}
-			catch(error){
+			else{
 				window.alert('No se ha encontrado ningún personaje con el nombre "' +  nombre + '"');
 			}
 		}
@@ -113,16 +122,8 @@ export class Modelo{
 	**/
 	borrar(datos){
 		const objectStore = this.db.transaction('personajes', 'readwrite').objectStore('personajes');
-		const indice = objectStore.index('nombre');
-		
-		const peticion = indice.getKey(datos.nombre);
-		
-		peticion.onsuccess = (evento) => {
-			let id = evento.target.result;
-			objectStore.delete(id);
-			// location.reload();
-			this.leer();
-		}
+		objectStore.delete(datos.id);
+		this.leer();
 	}
 	
 	/**
@@ -130,18 +131,10 @@ export class Modelo{
 		@param datos {Object} Colección de datos que se actualizar en la base de datos
 		@param nombre {String} Nombre original que se utiliza como indice
 	**/
-	editar(datos, nombre){
+	editar(datos, indice){
 		const objectStore = this.db.transaction('personajes', 'readwrite').objectStore('personajes');
-		const indice = objectStore.index('nombre');
-		
-		const peticion = indice.getKey(nombre);
-		
-		peticion.onsuccess = (evento) => {
-			let id = evento.target.result;
-			objectStore.put(datos, id);
-			//location.reload();
-			this.leer();
-		}
+		objectStore.put(datos, indice);
+		this.leer();
 	}
 	
 	/**

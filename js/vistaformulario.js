@@ -43,6 +43,7 @@ export class VistaFormulario extends Vista{
 		this.botonAceptar = this.div.getElementsByTagName('button')[1];
 		this.botonModificar = this.div.getElementsByTagName('button')[2];
 		
+		this.botonCancelar.addEventListener('click', this.cancelar.bind(this));
 		this.botonAceptar.addEventListener('click', this.aceptarModificar.bind(this, 0));
 		this.botonModificar.addEventListener('click', this.aceptarModificar.bind(this, 1));
 	}
@@ -64,11 +65,17 @@ export class VistaFormulario extends Vista{
 		return datos;
 	}
 	
+	cancelar(){
+		this.borrarDatos();
+		this.controlador.pulsarNavPersonajes();
+	}
+	
 	/**
 		Evento que envia los datos que van a ser introducidos en la base de datos
 	**/
 	aceptarModificar(operacion){
 		try{
+			// this.base64 = null;
 			this.validar();
 			let fila = this.recolectarDatos();
 			switch(operacion){
@@ -115,6 +122,7 @@ export class VistaFormulario extends Vista{
 		this.fecha.value = '';
 		this.tipo.value = 0;
 		this.url.value = '';
+		this.imagen.value = '';
 	}
 	
 	/**
@@ -122,12 +130,13 @@ export class VistaFormulario extends Vista{
 		@param datos {Object} Colección de datos para rellenar los campos
 	**/
 	rellenar(datos){
-		this.indice = datos.nombre;
+		this.indice = datos.id;
 		this.nombre.value = datos.nombre;
 		this.descripcion.value = datos.descripcion;
 		this.fecha.value = datos.fecha;
 		this.tipo.value = datos.tipo;
 		this.url.value = datos.url;
+		this.base64 = datos.imagen;
 	}
 	
 	/**
