@@ -10,6 +10,7 @@ export class VistaDatos extends Vista{
 		this.campoFecha = document.getElementsByClassName('datos')[2];
 		this.campoTipo = document.getElementsByClassName('datos')[3];
 		this.campoURL = document.getElementsByClassName('datos')[4];
+		this.campoImagen = document.getElementsByTagName('img')[0];
 		
 	}
 	
@@ -30,8 +31,10 @@ export class VistaDatos extends Vista{
 		this.campoTipo.appendChild(document.createTextNode(datos.tipo));
 		let enlace = document.createElement('a');
 		enlace.setAttribute('href', datos.url);
+		enlace.setAttribute('target', '_blank');
 		enlace.appendChild(document.createTextNode('Más información sobre ' + datos.nombre));
 		this.campoURL.appendChild(enlace);
+		this.campoImagen.setAttribute('src', datos.imagen);
 	}
 	
 }

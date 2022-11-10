@@ -28,6 +28,16 @@ export class VistaFormulario extends Vista{
 			this.tipo.appendChild(opcion);
 		}
 		this.url = document.getElementsByTagName('input')[3];
+		this.imagen = document.getElementsByTagName('input')[4];
+		this.base64 = null;
+		this.imagen.addEventListener('change', e => {
+			const archivo = this.imagen.files[0];
+			const lector = new FileReader();
+			lector.addEventListener('load', () => {
+				this.base64 = lector.result;
+			});
+			lector.readAsDataURL(archivo);
+		});
 		
 		this.botonCancelar = this.div.getElementsByTagName('button')[0];
 		this.botonAceptar = this.div.getElementsByTagName('button')[1];
@@ -47,7 +57,8 @@ export class VistaFormulario extends Vista{
 			descripcion: this.descripcion.value,
 			fecha: this.fecha.value,
 			tipo: this.tipo.value,
-			url: this.url.value
+			url: this.url.value,
+			imagen: this.base64
 		};
 		
 		return datos;

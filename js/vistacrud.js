@@ -92,6 +92,7 @@ export class VistaCRUD extends Vista{
 		let url = document.createElement('td');
 		let enlace = document.createElement('a');
 		enlace.setAttribute('href', datos.url);
+		enlace.setAttribute('target', '_blank');
 		enlace.appendChild(document.createTextNode('Más información sobre ' + datos.nombre));
 		url.appendChild(enlace);
 		tr.appendChild(url);
