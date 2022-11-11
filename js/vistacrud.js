@@ -108,10 +108,13 @@ export class VistaCRUD extends Vista{
 		botones.appendChild(botonEliminar);
 		carta.appendChild(botones);
 		// Imagen
+		if(datos.imagen == null){
+			datos.imagen = 'imagenes/sin-imagen.jpg'
+		}
 		let contenedorImagen = document.createElement('div');
 		let imagen = document.createElement('img');
 		imagen.setAttribute('src', datos.imagen);
-		imagen.setAttribute('alt', 'datos.nombre');
+		imagen.setAttribute('alt', datos.nombre);
 		contenedorImagen.appendChild(imagen);
 		carta.appendChild(contenedorImagen);
 		// Nombre
