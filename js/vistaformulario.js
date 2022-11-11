@@ -15,6 +15,10 @@ export class VistaFormulario extends Vista{
 		this.controlador = controlador;
 		this.indice = null;
 		
+		//Titulo
+		this.tituloInsertar = this.div.getElementsByTagName('h1')[0];
+		this.tituloModificar = this.div.getElementsByTagName('h1')[1];
+		
 		// Elementos formularios
 		this.nombre = document.getElementsByTagName('input')[1];
 		this.descripcion = document.getElementsByTagName('textarea')[0];
@@ -39,10 +43,12 @@ export class VistaFormulario extends Vista{
 			lector.readAsDataURL(archivo);
 		});
 		
+		this.botonCerrar = this.div.getElementsByClassName('cerrar')[0];
 		this.botonCancelar = this.div.getElementsByTagName('button')[0];
 		this.botonAceptar = this.div.getElementsByTagName('button')[1];
 		this.botonModificar = this.div.getElementsByTagName('button')[2];
 		
+		this.botonCerrar.addEventListener('click', this.cancelar.bind(this));
 		this.botonCancelar.addEventListener('click', this.cancelar.bind(this));
 		this.botonAceptar.addEventListener('click', this.aceptarModificar.bind(this, 0));
 		this.botonModificar.addEventListener('click', this.aceptarModificar.bind(this, 1));
@@ -85,8 +91,8 @@ export class VistaFormulario extends Vista{
 				case 1:
 					this.controlador.enviarDatos(fila, 1, this.indice);
 			}
-			this.borrarDatos();
 			this.controlador.pulsarNavPersonajes();
+			this.borrarDatos();
 		}
 		catch(error){
 			window.alert(error);
@@ -143,6 +149,8 @@ export class VistaFormulario extends Vista{
 		Oculta el boton de modificar
 	**/
 	ocultarModificar(){
+		this.tituloInsertar.style.display = 'block';
+		this.tituloModificar.style.display = 'none';
 		this.botonAceptar.style.display = 'inline';
 		this.botonModificar.style.display = 'none';
 	}
@@ -151,6 +159,8 @@ export class VistaFormulario extends Vista{
 		Oculta el boton de aceptar
 	**/
 	ocultarAceptar(){
+		this.tituloInsertar.style.display = 'none';
+		this.tituloModificar.style.display = 'block';
 		this.botonAceptar.style.display = 'none';
 		this.botonModificar.style.display = 'inline';
 	}

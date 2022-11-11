@@ -5,6 +5,10 @@ export class VistaDatos extends Vista{
 		super(div);
 		this.controlador = controlador;
 		
+		this.botonCerrar = this.div.getElementsByClassName('cerrar')[0];
+		console.log(this.botonCerrar);
+		this.botonCerrar.addEventListener('click', this.cerrar.bind(this));
+		
 		this.campoNombre = document.getElementsByClassName('datos')[0];
 		this.campoDescripcion = document.getElementsByClassName('datos')[1];
 		this.campoFecha = document.getElementsByClassName('datos')[2];
@@ -12,6 +16,11 @@ export class VistaDatos extends Vista{
 		this.campoURL = document.getElementsByClassName('datos')[4];
 		this.campoImagen = document.getElementsByTagName('img')[0];
 		
+	}
+	
+	cerrar(){
+		this.controlador.pulsarNavPersonajes();
+		this.borrarDatos();
 	}
 	
 	borrarDatos(){

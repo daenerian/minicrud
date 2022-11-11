@@ -100,17 +100,28 @@ export class Modelo{
 	**/
 	buscar(nombre){
 		const objectStore = this.db.transaction('personajes', 'readonly').objectStore('personajes');
-		const indice = objectStore.index('nombre');
+		const peticion = objectStore.openCursor();
+		this.lista = [];
+		console.log(this.lista);
+		nombre = nombre.toLowerCase();
 		
-		const peticion = indice.get(nombre);
-		
+		peticion.onerror = (evento) => {
+			console.log('No se han cargado los datos');
+		}
+
 		peticion.onsuccess = (evento) => {
-			this.lista = evento.target.result;
-			if(this.lista != undefined){
-				this.avisar();
+			const cursor = peticion.result;
+			if(cursor){
+				let comparacion = cursor.value.nombre.toLowerCase();
+				let regEx = new RegExp(nombre);
+				if(comparacion.match(regEx)){
+					this.lista.push(cursor.value);
+				}
+				cursor.continue();
+				
 			}
 			else{
-				window.alert('No se ha encontrado ningún personaje con el nombre "' +  nombre + '"');
+				this.avisar();
 			}
 		}
 		

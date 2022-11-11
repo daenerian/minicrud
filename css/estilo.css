@@ -1,12 +1,247 @@
-body > div{
-	display: none;
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;700&display=swap');
+
+body{
+	font-family: 'Rubik', sans-serif;
+}
+
+a:link, a:visited, a:active {
+	font-size: 18px;
+    text-decoration: none;
+	color: hsl(0, 0%, 10%);
+}
+
+a:hover{
+	text-decoration: underline;
+}
+
+button{
+	cursor: pointer;
+}
+
+nav{
+	padding: 10px 15px;
+	box-shadow: 0 1px 5px rgba(20, 20, 20, 0.3);
 }
 
 nav li{
 	cursor: pointer;
+	display: inline;
 }
 
-#divInicio img{
-	width: 200px;
+nav li:hover{
+	border-bottom: 1px solid black;
+}
+
+/* Sección CRUD */
+#divCRUD{
+	padding: 30px 0;
+}
+
+#barra-busqueda{
+	width: 80%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+}
+
+#barra-busqueda input[type="text"]{
+	width: 50%;
+	margin-right: 10px;
+}
+
+#barra-busqueda button{
+	width: 10%;
+}
+
+#personajes{
+	padding: 30px 115px 10px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.carta{
+	width: 300px;
+	height: 350px;
+	margin: 10px;
+	border: 1px solid #7F7F7F;
+	border-radius: 5px;
+	box-shadow: 1px 1px 2px rgba(127, 127, 127, 0.5);
+	overflow: hidden;
+	position: relative;
+	transition: all 0.3s ease-in;
+}
+
+.carta:hover{
+	transform: scale(1.05);
+}
+
+.carta div{
+	width: 100%;
 	height: auto;
+	overflow: hidden;
+}
+
+.carta p{
+	width: 100%;
+	padding: 10px 0;
+	font-size: 20px;
+	text-align: center;
+	color: white;
+	background-color: hsla(0, 0%, 10%, 0.8);
+	position: absolute;
+	top: 310px;
+}
+
+.carta div img{
+	width: 100%;
+}
+
+.agregar{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.agregar span{
+	font-size: 75px;
+	color: rgb(127, 127, 127);
+}
+
+.botones{
+	position: absolute;
+	/* top: 10px; */
+	/* left: 185px; */
+	transform: translate(185px, 10px);
+}
+
+.info{
+	margin-right: 5px;
+	padding: 4px;
+	background-color: #33A6A6;
+	color: white;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.modificar{
+	margin-right: 5px;
+	padding: 4px;
+	background-color: #F29544;
+	color: white;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.eliminar{
+	padding: 4px;
+	background-color: #F25041;
+	color: white;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+/* Sección formulario */
+
+#divFormulario, #divDatos{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	background-color: hsla(0, 0%, 85%, 0.5);
+	backdrop-filter: blur(20px);
+	visibility: hidden;
+	opacity: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.3s ease-in;
+}
+
+#formulario{
+	width: 500px;
+	padding: 20px 50px;
+	background-color: white;
+	border-radius: 3px;
+	position: relative;
+}
+
+#formulario h1{
+	font-size: 25px;
+	font-weight: bold;
+	margin: 25px 0 15px;
+	text-align: center;
+}
+
+#formulario input, textarea, select{
+	width: 100%;
+	margin: 10px 0 15px;
+	display: block;
+	box-sizing: border-box;
+}
+
+#botones-formulario{
+	width: 175.5px;
+	margin: 25px auto 15px;
+}
+
+#botones-formulario button{
+	padding: 5px 10px;
+}
+
+#datos{
+	width: 500px;
+	background-color: white;
+	border-radius: 3px;
+	position: relative;
+}
+
+
+#imagen-personaje{
+	width: 100%;
+	height: 300px;
+	overflow: hidden;
+}
+
+#imagen-personaje img{
+	width: 100%;
+	height: auto;
+}
+
+#info{
+	padding: 20px 50px 30px;
+}
+
+#info h1{
+	padding: 20px 0;
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+}
+
+#info h2{
+	padding: 10px 0;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#info p{
+	margin-bottom: 5px;
+	padding: 0 10px;
+}
+
+.url{
+	margin-top: 20px;
+	text-align: center;
+}
+
+.cerrar{
+	padding: 4px;
+	background-color: #F25041;
+	color: white;
+	border-radius: 3px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	cursor: pointer;
 }

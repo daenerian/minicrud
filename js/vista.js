@@ -19,11 +19,16 @@ export class Vista{
 		@param ver {Boolean} Booleano que indica si una vista se esconde o se muestra
 	**/
 	mostrar(ver){
+		console.log('entro');
 		if(ver){
-			this.div.style.display = 'block';
+			// this.div.style.display = 'block';
+			this.div.style.visibility = 'visible';
+			this.div.style.opacity = '1';
 		}
 		else{
-			this.div.style.display = 'none';
+			// this.div.style.display = 'none';
+			this.div.style.visibility = 'hidden';
+			this.div.style.opacity = '0';
 		}
 	}
 	

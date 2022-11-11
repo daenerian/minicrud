@@ -21,12 +21,7 @@ export class VistaCRUD extends Vista{
 		this.botonBuscar = document.getElementsByTagName('button')[0];
 		this.botonBuscar.addEventListener('click', this.buscar.bind(this));
 		
-		this.agregar = document.getElementsByClassName('agregar');
-		for(let boton of this.agregar){
-			boton.addEventListener('click', this.pulsarAgregar.bind(this));
-		}
-		
-		this.tabla = document.getElementsByTagName('tbody')[0];
+		this.cartas = document.getElementById('personajes');
 		
 	}
 	
@@ -48,9 +43,9 @@ export class VistaCRUD extends Vista{
 	/**
 		Borra todas las filas de la tabla
 	**/
-	borrarTabla(){
-		while(this.tabla.firstElementChild){
-			this.tabla.firstElementChild.remove();
+	borrarCartas(){
+		while(this.cartas.firstChild){
+			this.cartas.firstChild.remove();
 		}
 	}
 	
@@ -58,62 +53,91 @@ export class VistaCRUD extends Vista{
 		Introduce los datos en la tabla
 	**/
 	actualizar(){
-		this.borrarTabla();
+		this.borrarCartas();
+		let botonesAgregar = [];
+		for(let i=0;i<2;i++){
+			let agregar = document.createElement('div');
+			agregar.classList.add('carta');
+			agregar.classList.add('agregar');
+			let simbolo = document.createElement('span');
+			simbolo.setAttribute('class', 'material-icons');
+			simbolo.appendChild(document.createTextNode('add'));
+			agregar.appendChild(simbolo);
+			let texto = document.createElement('p');
+			texto.appendChild(document.createTextNode('Agregar personaje'));
+			agregar.appendChild(texto);
+			agregar.addEventListener('click', this.pulsarAgregar.bind(this));
+			botonesAgregar[i] = agregar;
+		}
+		this.cartas.appendChild(botonesAgregar[0]);
 		if(this.modelo.getDatos().length == undefined){
-			this.crearFila(this.modelo.getDatos());
+			this.crearCarta(this.modelo.getDatos());
 		}
 		else{
 			for(let datos of this.modelo.getDatos()){
-				this.crearFila(datos);
+				this.crearCarta(datos);
 			}
 		}
+		this.cartas.appendChild(botonesAgregar[1]);
 	}
 	
-	crearFila(datos){
-		let tr = document.createElement('tr');
-		this.tabla.appendChild(tr);
-		// Nombre
-		let nombre = document.createElement('td');
-		nombre.appendChild(document.createTextNode(datos.nombre));
-		tr.appendChild(nombre);
-		// Descripción
-		let descripcion = document.createElement('td');
-		descripcion.appendChild(document.createTextNode(datos.descripcion));
-		tr.appendChild(descripcion);
-		// Fecha de aparición
-		let fecha = document.createElement('td');
-		fecha.appendChild(document.createTextNode(datos.fecha));
-		tr.appendChild(fecha);
-		// Tipo
-		let tipo = document.createElement('td');
-		tipo.appendChild(document.createTextNode(datos.tipo));
-		tr.appendChild(tipo);
-		// URL
-		let url = document.createElement('td');
-		let enlace = document.createElement('a');
-		enlace.setAttribute('href', datos.url);
-		enlace.setAttribute('target', '_blank');
-		enlace.appendChild(document.createTextNode('Más información sobre ' + datos.nombre));
-		url.appendChild(enlace);
-		tr.appendChild(url);
+	crearCarta(datos){
+		let carta = document.createElement('div');
+		carta.setAttribute('class', 'carta');
+		this.cartas.appendChild(carta);
 		// Botones
-		let botones = document.createElement('td');
+		let botones = document.createElement('div');
+		botones.classList.add('botones');
 		let botonInfo = document.createElement('span');
-		botonInfo.setAttribute('class', 'material-icons');
+		botonInfo.classList.add('material-icons');
+		botonInfo.classList.add('info');
 		botonInfo.appendChild(document.createTextNode('arrow_outward'));
 		botonInfo.addEventListener('click', this.ensenar.bind(this, datos));
 		botones.appendChild(botonInfo);
 		let botonModificar = document.createElement('span');
-		botonModificar.setAttribute('class', 'material-icons');
+		botonModificar.classList.add('material-icons');
+		botonModificar.classList.add('modificar');
 		botonModificar.appendChild(document.createTextNode('edit'));
 		botonModificar.addEventListener('click', this.editar.bind(this, datos));
 		botones.appendChild(botonModificar);
 		let botonEliminar = document.createElement('span');
-		botonEliminar.setAttribute('class', 'material-icons');
+		botonEliminar.classList.add('material-icons');
+		botonEliminar.classList.add('eliminar');
 		botonEliminar.appendChild(document.createTextNode('delete'));
 		botonEliminar.addEventListener('click', this.borrar.bind(this, datos));
 		botones.appendChild(botonEliminar);
-		tr.appendChild(botones);
+		carta.appendChild(botones);
+		// Imagen
+		let contenedorImagen = document.createElement('div');
+		let imagen = document.createElement('img');
+		imagen.setAttribute('src', datos.imagen);
+		imagen.setAttribute('alt', 'datos.nombre');
+		contenedorImagen.appendChild(imagen);
+		carta.appendChild(contenedorImagen);
+		// Nombre
+		let nombre = document.createElement('p');
+		nombre.appendChild(document.createTextNode(datos.nombre));
+		carta.appendChild(nombre);
+		// // Descripción
+		// let descripcion = document.createElement('td');
+		// descripcion.appendChild(document.createTextNode(datos.descripcion));
+		// tr.appendChild(descripcion);
+		// // Fecha de aparición
+		// let fecha = document.createElement('td');
+		// fecha.appendChild(document.createTextNode(datos.fecha));
+		// tr.appendChild(fecha);
+		// // Tipo
+		// let tipo = document.createElement('td');
+		// tipo.appendChild(document.createTextNode(datos.tipo));
+		// tr.appendChild(tipo);
+		// // URL
+		// let url = document.createElement('td');
+		// let enlace = document.createElement('a');
+		// enlace.setAttribute('href', datos.url);
+		// enlace.setAttribute('target', '_blank');
+		// enlace.appendChild(document.createTextNode('Más información sobre ' + datos.nombre));
+		// url.appendChild(enlace);
+		// tr.appendChild(url);
 	}
 	
 	ensenar(datos){

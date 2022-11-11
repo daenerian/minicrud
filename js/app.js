@@ -54,7 +54,7 @@ class Controlador{
 		@param operacion {Number} Según el número enviado indica que botón se debe esconder
 	**/
 	pulsarBotonAgregarModificar(operacion){
-		this.vistaCRUD.mostrar(false);
+		//this.vistaCRUD.mostrar(false);
 		this.vistaFormulario.mostrar(true);
 		this.vistaFormulario.borrarDatos();
 		this.vistaDatos.mostrar(false);
@@ -68,7 +68,7 @@ class Controlador{
 	}
 	
 	pulsarBotonMostrar(){
-		this.vistaCRUD.mostrar(false);
+		//this.vistaCRUD.mostrar(false);
 		this.vistaFormulario.mostrar(false);
 		this.vistaDatos.mostrar(true);
 	}
