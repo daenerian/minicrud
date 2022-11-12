@@ -84,7 +84,6 @@ export class VistaFormulario extends Vista{
 	**/
 	aceptarModificar(operacion){
 		try{
-			// this.base64 = null;
 			this.validar();
 			let fila = this.recolectarDatos();
 			switch(operacion){
@@ -96,6 +95,7 @@ export class VistaFormulario extends Vista{
 			}
 			this.controlador.pulsarNavPersonajes();
 			this.borrarDatos();
+			this.base64 = null;
 		}
 		catch(error){
 			window.alert(error);
