@@ -1,6 +1,16 @@
+/**
+	@file Contiene la vista que muestra los datos especificos de un personaje
+	@author Juan Daniel Carvajal <juandanielcarvajalmontes.guadalupe@alumnado.fundacionloyola.net>
+**/
 import{Vista} from './vista.js';
 
+/**
+	Vista de los datos
+**/
 export class VistaDatos extends Vista{
+	/**
+		Constructor de la clase
+	**/
 	constructor(controlador, div){
 		super(div);
 		this.controlador = controlador;
@@ -18,11 +28,18 @@ export class VistaDatos extends Vista{
 		
 	}
 	
+	/**
+		Borra los datos de los campos
+		Regresa a la vista del CRUD
+	**/
 	cerrar(){
 		this.controlador.pulsarNavPersonajes();
 		this.borrarDatos();
 	}
 	
+	/**
+		Borra la información que hay en cada uno de los campos
+	**/
 	borrarDatos(){
 		let campos = document.getElementsByClassName('datos');
 		for(let campo of campos){
@@ -32,6 +49,10 @@ export class VistaDatos extends Vista{
 		}
 	}
 	
+	/**
+		Rellena los campos con la información sobre el personaje
+		@param datos {Object} Colección de datos que contiene la información del personaje que se muestra por pantalla
+	**/
 	ensenar(datos){
 		this.borrarDatos();
 		this.campoNombre.appendChild(document.createTextNode(datos.nombre));

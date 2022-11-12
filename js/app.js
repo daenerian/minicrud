@@ -41,7 +41,7 @@ class Controlador{
 	}
 	
 	/**
-		Muestra la vista del CRUD y esconde la vista del Formulario
+		Esconde las vistas del formulario y los datos
 	**/
 	pulsarNavPersonajes(){
 		this.vistaCRUD.mostrar(true);
@@ -50,6 +50,7 @@ class Controlador{
 	}
 	
 	/**
+		Muestra la vista del formulario
 		Esconde o muestra los botones de aceptar y modificar en la vista del Formulario
 		@param operacion {Number} Según el número enviado indica que botón se debe esconder
 	**/
@@ -67,6 +68,9 @@ class Controlador{
 		}
 	}
 	
+	/**
+		Muestra la vista de los datos
+	**/
 	pulsarBotonMostrar(){
 		//this.vistaCRUD.mostrar(false);
 		this.vistaFormulario.mostrar(false);
@@ -89,6 +93,11 @@ class Controlador{
 		}
 	}
 	
+	/**
+		Comienza el proceso para mostrar la vista de los Datos
+		Enseña los datos seleccionados en la vista de los datos
+		@param datos {Object} Colección de datos que se quieren mostrar en la vista de los datos
+	**/
 	mostrarDatos(datos){
 		this.pulsarBotonMostrar();
 		this.vistaDatos.ensenar(datos);

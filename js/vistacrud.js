@@ -81,6 +81,10 @@ export class VistaCRUD extends Vista{
 		this.cartas.appendChild(botonesAgregar[1]);
 	}
 	
+	/**
+		Cera tarjetas que muestra por pantalla en función a los datos obtenidos de la base de datos
+		@param datos {Object} Colección de datos que contiene información que se muestran en las tarjetas
+	**/
 	crearCarta(datos){
 		let carta = document.createElement('div');
 		carta.setAttribute('class', 'carta');
@@ -121,28 +125,12 @@ export class VistaCRUD extends Vista{
 		let nombre = document.createElement('p');
 		nombre.appendChild(document.createTextNode(datos.nombre));
 		carta.appendChild(nombre);
-		// // Descripción
-		// let descripcion = document.createElement('td');
-		// descripcion.appendChild(document.createTextNode(datos.descripcion));
-		// tr.appendChild(descripcion);
-		// // Fecha de aparición
-		// let fecha = document.createElement('td');
-		// fecha.appendChild(document.createTextNode(datos.fecha));
-		// tr.appendChild(fecha);
-		// // Tipo
-		// let tipo = document.createElement('td');
-		// tipo.appendChild(document.createTextNode(datos.tipo));
-		// tr.appendChild(tipo);
-		// // URL
-		// let url = document.createElement('td');
-		// let enlace = document.createElement('a');
-		// enlace.setAttribute('href', datos.url);
-		// enlace.setAttribute('target', '_blank');
-		// enlace.appendChild(document.createTextNode('Más información sobre ' + datos.nombre));
-		// url.appendChild(enlace);
-		// tr.appendChild(url);
 	}
 	
+	/**
+		Muestra datos más especificos de la carta seleccionada
+		@param datos {Object} Colección de datos con los datos capturados en la tarjeta
+	**/
 	ensenar(datos){
 		this.controlador.mostrarDatos(datos);
 	}

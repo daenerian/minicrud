@@ -36,7 +36,7 @@ export class Modelo{
 	}
 	
 	/**
-		Registra los callbacks hechos
+		Registra las funciones a las que tiene que llamar el modelo cuando se registren cambios
 	**/
 	registrar(callback){
         this.callbacks.push(callback);
@@ -51,6 +51,9 @@ export class Modelo{
 		}
 	}
 	
+	/**
+		Lee los datos que hay dentro de la tabla y los muestra en pantalla
+	**/
 	leer(){
 		const objectStore = this.db.transaction('personajes', 'readonly').objectStore('personajes');
 		const peticion = objectStore.openCursor();

@@ -71,6 +71,9 @@ export class VistaFormulario extends Vista{
 		return datos;
 	}
 	
+	/**
+		Borra los datos del formulario y regresa a la vista del CRUD
+	**/
 	cancelar(){
 		this.borrarDatos();
 		this.controlador.pulsarNavPersonajes();
@@ -99,6 +102,9 @@ export class VistaFormulario extends Vista{
 		}
 	}
 	
+	/**
+		Hace las validaciones pertinentes de cada campo del formulario
+	**/
 	validar(){
 		let bandera = null;
 		let nombre = this.nombre.value;
@@ -122,6 +128,9 @@ export class VistaFormulario extends Vista{
 		}
 	}
 	
+	/**
+		Borra los datos de los campos del formulario
+	**/
 	borrarDatos(){
 		this.nombre.value = '';
 		this.descripcion.value = '';
